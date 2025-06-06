@@ -26,55 +26,56 @@ OpenAI API Key — Get it from your OpenAI dashboard
 # Installation
 Clone the repository:
 
-bash
+```bash
 Copiar
 Editar
 git clone https://github.com/your-username/Python_ChatBot_IA.git
 cd Python_ChatBot_IA
 Install required packages:
+```
 
-bash
+```bash
 Copiar
 Editar
 pip install streamlit openai
 (Optional) Install python-dotenv if you want to use a .env file for your API key:
+```
 
-bash
-Copiar
-Editar
+```bash
 pip install python-dotenv
 🔐 API Key Configuration
 Create a .env file in the root directory:
 
+
 ini
-Copiar
-Editar
+```
+
+```bash
 OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
+
 Make sure to add .env to your .gitignore file:
 
-txt
-Copiar
-Editar
+```bash
 .env
 Load the key in your code (in main.py):
+````
 
-python
-Copiar
-Editar
+```bash
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
+```
+
 This setup ensures your API key is safe and not exposed in version control.
 
 # Running the Chatbot
 Run the app with Streamlit:
 
-bash
-Copiar
-Editar
+```bash
 streamlit run main.py
 Then open your browser and go to http://localhost:8501.
-
+````
 You’ll see a chat interface where you can type messages and receive AI-powered responses.
