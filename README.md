@@ -1,87 +1,80 @@
 Python_ChatBot_IA
-Python_ChatBot_IA is a simple, functional chatbot built with Python and Streamlit. It connects to the OpenAI API to handle natural language conversations in real-time. The application is lightweight and has no dependencies beyond the streamlit and openai Python libraries. Importantly, it follows best practices for secret management: the OpenAI API key is never hard-coded, but loaded from an environment variable (named OPENAI_API_KEY)
-help.openai.com
-github.com
-. This ensures the key remains private (as recommended by OpenAI) and isn’t exposed in source control.
-Features
-Interactive Chat Interface: Uses a Streamlit web app to let users send messages and receive responses from an OpenAI model. The UI is simple and easy to use.
-OpenAI-powered Responses: Connects to the OpenAI API (e.g. GPT-3.5 or GPT-4) to generate replies to user input. Similar projects allow selecting different GPT models and adjusting parameters like temperature and max tokens
-github.com
-.
-Secure Key Handling: Loads the OPENAI_API_KEY from an environment variable (not from code) to protect your secret key
-help.openai.com
-github.com
-.
-Minimal Dependencies: Only requires installing streamlit and openai. This makes setup and deployment straightforward (see Installation below).
-Lightweight and Extensible: The code is open-source and easy to modify. You can extend it to support more features (for example, streaming outputs or additional model settings as suggested in similar examples
-github.com
-).
-Prerequisites
-Python 3.8+ – The OpenAI Python client requires Python 3.8 or higher
-github.com
-.
-pip – To install Python packages (streamlit, openai, etc.).
-OpenAI API Key – You must have an OpenAI account and obtain an API key from the OpenAI dashboard. This key is used by the app to authenticate requests.
-(Optional) python-dotenv – Although not strictly required, it is recommended (by OpenAI’s official guidance) to use the python-dotenv package. This allows you to put your API key in a .env file, and automatically load it into the environment
-github.com
-. Installing it is simple: pip install python-dotenv.
-Installation
-Clone the repository to your local machine:
+Python_ChatBot_IA is a simple and functional chatbot built with Python and Streamlit. It connects to the OpenAI API to handle real-time natural language conversations. The app is lightweight and requires only two Python libraries: streamlit and openai.
+
+⚠️ Security Note: The API key is not hardcoded in the source code. It is loaded from an environment variable named OPENAI_API_KEY, following OpenAI's best practices for key management.
+
+🔧 Features
+Interactive Chat Interface: Built with Streamlit for a clean and easy-to-use web UI.
+
+OpenAI-Powered Responses: Uses OpenAI’s models (e.g., GPT-3.5, GPT-4) to respond to user input.
+
+Secure API Key Handling: The key is loaded from an environment variable, not stored in the code.
+
+Minimal Dependencies: Only requires streamlit and openai, making setup fast and simple.
+
+Lightweight and Extensible: The code is clean and easy to modify — ideal for adding new features like model selection, temperature control, or streaming outputs.
+
+✅ Prerequisites
+Python 3.8 or higher
+
+pip (Python package manager)
+
+OpenAI API Key — Get it from your OpenAI dashboard
+
+(Optional) python-dotenv — Useful for loading environment variables from a .env file.
+
+💻 Installation
+Clone the repository:
+
 bash
 Copiar
 Editar
 git clone https://github.com/your-username/Python_ChatBot_IA.git
 cd Python_ChatBot_IA
-Install required packages. For example, using pip:
+Install required packages:
+
 bash
 Copiar
 Editar
 pip install streamlit openai
-This installs Streamlit and the OpenAI Python client. (As shown in the OpenAI library’s documentation, you can install it via pip install openai
-github.com
-.)
-(Optional) If you plan to use a .env file for configuration, install python-dotenv:
+(Optional) Install python-dotenv if you want to use a .env file for your API key:
+
 bash
 Copiar
 Editar
 pip install python-dotenv
-Configuration
-To securely provide your OpenAI API key to the app, follow these steps:
-Create a .env file in the project root (same directory as main.py).
-Add your API key to the .env file in the following format (note the sk- prefix):
+🔐 API Key Configuration
+Create a .env file in the root directory:
+
 ini
 Copiar
 Editar
 OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-For example, one maintainer suggests including a template .env file with just OPENAI_API_KEY=sk- and adding the real key after cloning
-github.com
-. This key always starts with sk-, so your file might look like OPENAI_API_KEY=sk-1234abcd...
-github.com
-.
-Secure the .env file by adding it to .gitignore. This ensures your secret key does not get committed to version control
-github.com
-help.openai.com
-.
-Load the key in code. In your Python code (e.g. in main.py), fetch the key from the environment. For example:
+Make sure to add .env to your .gitignore file:
+
+txt
+Copiar
+Editar
+.env
+Load the key in your code (in main.py):
+
 python
 Copiar
 Editar
 import os
-api_key = os.getenv("OPENAI_API_KEY")
-openai.api_key = api_key
-This uses os.getenv("OPENAI_API_KEY") to read the key into the OpenAI client
-github.com
-. (If using python-dotenv, make sure to call load_dotenv() early in your script so that the .env values are loaded into os.environ
-github.com
-.)
-By following this setup, you keep your API key out of the source code, adhering to OpenAI’s security recommendations
-help.openai.com
-github.com
-.
-Usage
-After installation and configuration, run the chatbot app with Streamlit:
+from dotenv import load_dotenv
+
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+This setup ensures your API key is safe and not exposed in version control.
+
+▶️ Running the Chatbot
+Run the app with Streamlit:
+
 bash
 Copiar
 Editar
 streamlit run main.py
-This will start the Streamlit development server. Open your web browser and go to http://localhost:8501 (or the URL shown in the console). You should see the chat interface. Simply type your messages into the input box and the app will display responses generated by the OpenAI model.
+Then open your browser and go to http://localhost:8501.
+
+You’ll see a chat interface where you can type messages and receive AI-powered responses.
